@@ -6,28 +6,22 @@ const CatsService = require('./cats-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
 const catQ = new Queue();
 const catA = new Array();
+const { app } = require('../server');
+
+CatsService.getAllCats(app.get('db')).then(cats => {
+  for (let i = 0; i < cats.length; i++) {
+    cats[i].adopted = false;
+    catQ.enqueue(cats[i]);
+    catA.push(cats[i]);
+  }
+});
 
 catsRouter
   .route('/')
   .get((req, res, next) => {
-    if (isEmpty(catQ)) {
-      CatsService.getAllCats(req.app.get('db'))
-        .then(cats => {
-          for (let i = 0; i < cats.length; i++) {
-            cats[i].adopted = false;
-            catQ.enqueue(cats[i]);
-            catA.push(cats[i]);
-          }
-
-          res.json(catA);
-        })
-        .catch(next);
-    } else {
-      res.json(catA);
-    }
+    res.json(catA);
   })
   .delete((req, res, next) => {
-    debugger;
     const adopted = catQ.dequeue();
     if (adopted !== null) {
       adopted.adopted = true;
@@ -36,7 +30,6 @@ catsRouter
   });
 
 catsRouter.route('/queue').get((req, res, next) => {
-  debugger;
   if (catQ.first === null) {
     res.json(null);
   } else {
