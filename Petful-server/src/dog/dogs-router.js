@@ -2,33 +2,44 @@
 
 const express = require('express');
 const dogsRouter = express.Router();
-const DogsService = require('./dogs-service');
+const CatsService = require('./dogs-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
+const dogQ = new Queue();
+let dogA = [];
 
 dogsRouter
   .route('/')
   .get((req, res, next) => {
-    DogsService.getAllDogs(req.app.get('db'))
-      .then(dogs => {
-        const dogQ = new Queue();
-        for (let i = 0; i < dogs.length; i++) {
-          dogQ.enqueue(dogs[i]);
-        }
-        res.json({ first: peek(dogQ), dogs: display(dogQ) });
-      })
-      .catch(next);
+    if (isEmpty(dogQ)) {
+      CatsService.getAllCats(req.app.get('db'))
+        .then(dogs => {
+          for (let i = 0; i < dogs.length; i++) {
+            dogs[i].adopted = false;
+            dogQ.enqueue(dogs[i]);
+          }
+          dogA = dogs;
+          res.json(dogA);
+        })
+        .catch(next);
+    } else {
+      res.json(dogA);
+    }
   })
   .delete((req, res, next) => {
-    DogsService.getAllDogs(req.app.get('db'))
-      .then(dogs => {
-        const dogQ = new Queue();
-        for (let i = 0; i < dogs.length; i++) {
-          dogQ.enqueue(dogs[i]);
-        }
-        const dog = dogQ.dequeue();
-        res.json(204).end();
-      })
-      .catch(next);
+    const adopted = dogQ.dequeue();
+    adopted.adopted = true;
+    res.json(204).end();
   });
+
+dogsRouter.route('/queue').get((req, res, next) => {
+  debugger;
+  res.json(peek(dogQ));
+});
+
+/*dogsRouter.route('/:id').get((req, res) => {
+  const db = req.app.get('db');
+  let id = req.params.id;
+  CatsService.getCatDetails(db, id).then(cat => res.json(cat));
+});*/
 
 module.exports = dogsRouter;
