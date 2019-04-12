@@ -2,7 +2,7 @@
 
 const express = require('express');
 const dogsRouter = express.Router();
-const CatsService = require('./dogs-service');
+const DogsService = require('./dogs-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
 const dogQ = new Queue();
 let dogA = [];
@@ -11,7 +11,7 @@ dogsRouter
   .route('/')
   .get((req, res, next) => {
     if (isEmpty(dogQ)) {
-      CatsService.getAllCats(req.app.get('db'))
+      DogsService.getAllDogs(req.app.get('db'))
         .then(dogs => {
           for (let i = 0; i < dogs.length; i++) {
             dogs[i].adopted = false;
