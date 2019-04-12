@@ -5,6 +5,7 @@ const knex = require('knex');
 const cors = require('cors');
 const catsRouter = require('./cat/cats-router');
 const dogsRouter = require('./dog/dogs-router');
+const usersRouter = require('./dog/dogs-router');
 const { PORT, DB_URL, CLIENT_ORIGIN } = require('./config');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(
 
 app.use('/api/cat', catsRouter);
 app.use('/api/dog', dogsRouter);
+app.use('/api/user', usersRouter);
 
 // Catch-all 404
 app.use(function(req, res, next) {
