@@ -8,12 +8,19 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "migrate": "postgrator --config postgrator-config.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
-    "nodemon": "^1.18.11"
+    "knex": "^0.16.5",
+    "nodemon": "^1.18.11",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {
+    "postgrator-cli": "^3.1.0"
   }
 }
