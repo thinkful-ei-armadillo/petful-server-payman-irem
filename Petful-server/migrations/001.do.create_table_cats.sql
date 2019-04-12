@@ -9,5 +9,6 @@ CREATE TABLE cats (
     age integer not null,
     breed text not null,
     story text not null,
-    day_added timestamp DEFAULT now() not null
+    day_added timestamp DEFAULT now() not null,
+    adopted text default 'false'
 );
