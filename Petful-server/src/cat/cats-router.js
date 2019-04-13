@@ -5,7 +5,7 @@ const catsRouter = express.Router();
 const CatsService = require('./cats-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
 const catQ = new Queue();
-let catA = [];
+const catA = new Array();
 
 catsRouter
   .route('/')
@@ -16,8 +16,9 @@ catsRouter
           for (let i = 0; i < cats.length; i++) {
             cats[i].adopted = false;
             catQ.enqueue(cats[i]);
+            catA.push(cats[i]);
           }
-          catA = cats;
+
           res.json(catA);
         })
         .catch(next);
@@ -26,14 +27,21 @@ catsRouter
     }
   })
   .delete((req, res, next) => {
+    debugger;
     const adopted = catQ.dequeue();
-    adopted.adopted = true;
+    if (adopted !== null) {
+      adopted.adopted = true;
+    }
     res.json(204).end();
   });
 
 catsRouter.route('/queue').get((req, res, next) => {
   debugger;
-  res.json(peek(catQ));
+  if (catQ.first === null) {
+    res.json(null);
+  } else {
+    res.json(peek(catQ));
+  }
 });
 
 /*catsRouter.route('/:id').get((req, res) => {
