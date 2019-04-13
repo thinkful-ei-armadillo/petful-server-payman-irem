@@ -3,8 +3,7 @@
 const express = require('express');
 const knex = require('knex');
 const cors = require('cors');
-const catsRouter = require('./cat/cats-router');
-const dogsRouter = require('./dog/dogs-router');
+
 const { PORT, DB_URL, CLIENT_ORIGIN } = require('./config');
 
 const app = express();
@@ -22,6 +21,9 @@ app.use(
   })
 );
 module.exports = { app };
+
+const catsRouter = require('./cat/cats-router');
+const dogsRouter = require('./dog/dogs-router');
 
 app.use('/api/cat', catsRouter);
 app.use('/api/dog', dogsRouter);

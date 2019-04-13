@@ -28,8 +28,11 @@ dogsRouter
   });
 
 dogsRouter.route('/queue').get((req, res, next) => {
-  debugger;
-  res.json(peek(dogQ));
+  if (dogQ.first === null) {
+    res.json(null);
+  } else {
+    res.json(peek(dogQ));
+  }
 });
 
 /*dogsRouter.route('/:id').get((req, res) => {
