@@ -12,7 +12,7 @@
     "migrate": "postgrator --config postgrator-config.js",
     "migrate-production": "postgrator --config postgrator-config.js",
     "dev": "nodemon server.js",
-    "predeploy": "npm audit  && npm run migrate-production",
+    "predeploy": "npm audit",
     "deploy": "git push heroku master"
   },
   "dependencies": {
