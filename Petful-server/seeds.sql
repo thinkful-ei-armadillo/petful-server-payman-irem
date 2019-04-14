@@ -3,7 +3,7 @@ INSERT INTO cats(imageURL, imageDescription, name, sex, age, breed, story)
 VALUES
 ('https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg', 'Orange bengal cat with black stripes lounging on concrete.', 'Fluffy', 'Female', 2, 'Bengal', 'Thrown on the street', '2019-04-12 16:04:19')
 ('https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', 'Gray cat sitting', 'Smoke', 'Male', 4, 'Siamese', 'Thrown on the street', '2019-04-13 16:04:19')
-('https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_1280.jpg', 'Black cat', 'Audrey', 'Female', 3, 'Maine Coon', 'Thrown on the street','2019-04-14 16:04:19')
+('https://images.unsplash.com/photo-1532386236358-a33d8a9434e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80', 'Black cat', 'Audrey', 'Female', 3, 'Maine Coon', 'Thrown on the street','2019-04-14 16:04:19')
 ('https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_960_720.jpg', 'White cat', 'Potter', 'Male', 1, 'Bengal', 'Thrown on the street', '2019-04-15 16:04:19')
 ('https://visualhunt.com/photos/2/portrait-of-cat-lying-on-floor.jpg?s=l', 'Gray cat', 'Maizel', 'Female', 2, 'Maine Coon', 'Thrown on the street', '2019-04-16 16:04:19')
 

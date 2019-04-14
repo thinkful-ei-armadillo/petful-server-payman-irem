@@ -1,2 +1,0 @@
-# DSA-Petful
-Pet adoption
