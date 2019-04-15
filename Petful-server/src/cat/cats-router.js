@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const { userQ, remove, users } = require('../user/user-middleware');
 const catsRouter = express.Router();
 const CatsService = require('./cats-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
@@ -26,10 +27,12 @@ catsRouter
     if (adopted !== null) {
       adopted.adopted = true;
     }
+    remove();
     res.json(204).end();
   });
 
-catsRouter.route('/queue').get((req, res, next) => {
+catsRouter.route('/queue').get(users, (req, res, next) => {
+  let user = req.user;
   if (catQ.first === null) {
     res.json(null);
   } else {

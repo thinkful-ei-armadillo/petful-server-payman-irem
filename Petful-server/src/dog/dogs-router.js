@@ -2,6 +2,7 @@
 
 const express = require('express');
 const dogsRouter = express.Router();
+const { userQ, remove, users } = require('../user/user-middleware');
 const DogsService = require('./dogs-service');
 const { Queue, peek, display, isEmpty } = require('../modules/queue');
 const { app } = require('../server');
@@ -24,10 +25,13 @@ dogsRouter
   .delete((req, res, next) => {
     const adopted = dogQ.dequeue();
     adopted.adopted = true;
+    remove();
     res.json(204).end();
   });
 
-dogsRouter.route('/queue').get((req, res, next) => {
+dogsRouter.route('/queue').get(users, (req, res, next) => {
+  let user = req.user;
+
   if (dogQ.first === null) {
     res.json(null);
   } else {
