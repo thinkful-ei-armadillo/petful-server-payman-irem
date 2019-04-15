@@ -14,17 +14,8 @@ const db = knex({
 });
 
 app.set('db', db);
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
 
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
-);
+app.use(cors());
 module.exports = { app };
 
 const catsRouter = require('./cat/cats-router');
