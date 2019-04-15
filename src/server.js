@@ -21,6 +21,8 @@ app.use(
   })
 );
 
+module.exports = { app };
+
 const catsRouter = require('./cat/cats-router');
 const dogsRouter = require('./dog/dogs-router');
 
