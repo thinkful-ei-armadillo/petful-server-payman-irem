@@ -16,9 +16,7 @@ const db = knex({
 app.set('db', db);
 
 app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
+  cors()
 );
 module.exports = { app };
 
