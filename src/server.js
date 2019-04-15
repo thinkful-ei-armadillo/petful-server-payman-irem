@@ -14,10 +14,15 @@ const db = knex({
 });
 
 app.set('db', db);
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use(
   cors({
-    origin: 'https://payman-irem-petful-app.now.sh'
+    origin: CLIENT_ORIGIN
   })
 );
 module.exports = { app };
