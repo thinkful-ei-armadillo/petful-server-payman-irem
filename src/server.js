@@ -4,7 +4,7 @@ const express = require('express');
 const knex = require('knex');
 const cors = require('cors');
 
-const { , DB_URL, CLIENT_ORIGIN } = require('./config');
+const { DB_URL, CLIENT_ORIGIN } = require('./config');
 const port = process.env.PORT || 80;
 const app = express();
 
