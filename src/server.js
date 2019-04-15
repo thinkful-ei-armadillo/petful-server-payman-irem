@@ -16,7 +16,9 @@ const db = knex({
 app.set('db', db);
 
 app.use(
-  cors()
+  cors({
+    origin: 'https://payman-irem-petful-app.now.sh'
+  })
 );
 module.exports = { app };
 
