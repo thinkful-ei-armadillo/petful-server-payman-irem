@@ -15,7 +15,11 @@ const db = knex({
 
 app.set('db', db);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+);
 
 const catsRouter = require('./cat/cats-router');
 const dogsRouter = require('./dog/dogs-router');
